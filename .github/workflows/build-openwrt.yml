@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: Build Lienol OpenWrt
 
 on:
   repository_dispatch:
@@ -61,26 +61,46 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Load custom feeds
+
+    - name: 读取自定义文件1
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
-
-    - name: Update feeds
+    - name: 拉取源码插件源
       run: cd openwrt && ./scripts/feeds update -a
-
-    - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
-
-    - name: Load custom configuration
+      
+    - name: 增加常用插件
       run: |
-        [ -e files ] && mv files openwrt/files
+        cd openwrt
+        find . -name 'luci-app-netdata' -o -name 'netdata' -o -name 'luci-theme-argon' -o -name 'luci-app-fileassistant' | xargs -i rm -rf {}
+        find . -name 'ddns-scripts_aliyun' -o -name 'ddns-scripts_dnspod' | xargs -i rm -rf {}
+        rm -rf feeds/packages/libs/libcap
+        git clone --depth 1 -b "${REPO_BRANCH}" https://github.com/281677160/openwrt-package
+        cp -Rf openwrt-package/* ./ && rm -rf openwrt-package
+        git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
+        git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+    - name: 安装源码插件源
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a > /dev/null 2>&1
+        ./scripts/feeds install -a
+    - name: 读取自定义文件2
+      run: |
+        [ -e Lienol/files ] && mv Lienol/files openwrt/files
+        [ -e Lienol/diy ] && cp -Rf Lienol/diy/* $GITHUB_WORKSPACE/openwrt
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        rm -fr openwrt/files/README
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+
+
+
+
+
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
@@ -88,6 +108,29 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        
+      
+      
+        
+        
+    - name: 生成.config配置文件
+      run: |
+        cd openwrt
+        make defconfig
+        ./scripts/diffconfig.sh > ${GITHUB_WORKSPACE}/config.txt
+        
+    - name: 上传.config配置文件在 github actions
+      uses: actions/upload-artifact@v2
+      with:
+        name: .config
+        path: config.txt
+        
+        
+        
+        
+        
+        
+        
 
     - name: Download package
       id: package
