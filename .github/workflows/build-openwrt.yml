@@ -80,7 +80,8 @@ jobs:
         git clone https://github.com/small-5/luci-app-adblock-plus package/luci-app-adblock-plus
         git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
         git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-        ./scripts/feeds install -a
+        
+        
         
     - name: 安装源码插件源
       run: cd openwrt && ./scripts/feeds install -a
