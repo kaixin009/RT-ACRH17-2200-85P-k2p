@@ -74,28 +74,21 @@ jobs:
     - name: 增加常用插件
       run: |
         cd openwrt
-        echo >> feeds.conf.default
         echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
         echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
-        ./scripts/feeds update nas nas_luci
-        ./scripts/feeds install -a -p nas
-        ./scripts/feeds install -a -p nas_luci
 
         git clone https://github.com/small-5/luci-app-adblock-plus package/luci-app-adblock-plus
         git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
         git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-    - name: 安装源码插件源
-      run: |
-        cd openwrt
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a > /dev/null 2>&1
         ./scripts/feeds install -a
+        
+    - name: 安装源码插件源
+      run: cd openwrt && ./scripts/feeds install -a
+      
     - name: 读取自定义文件2
       run: |
-        [ -e Lienol/files ] && mv Lienol/files openwrt/files
-        [ -e Lienol/diy ] && cp -Rf Lienol/diy/* $GITHUB_WORKSPACE/openwrt
+        [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        rm -fr openwrt/files/README
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
