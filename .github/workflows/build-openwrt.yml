@@ -81,7 +81,7 @@ jobs:
         ./scripts/feeds install -a -p nas
         ./scripts/feeds install -a -p nas_luci
         
-        git clone https://github.com/NueXini/NueXini_Packages/trunk/luci-app-adbyby-plus
+        svn co https://github.com/NueXini/NueXini_Packages/trunk/luci-app-adbyby-plus package/adbyby-all
         git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
         git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
         git clone https://github.com/wiwizcom/WiFiPortal package/wifidog-wiwiz
