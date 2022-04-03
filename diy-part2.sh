@@ -13,6 +13,10 @@
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/files/bin/config_generate
 
+# 删除原来的adbyby
+rm -rf  package/lean/luci-app-adbyby-plus
+svn co https://github.com/NueXini/NueXini_Packages/trunk/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
+
 # 删除原来的argon
 rm -rf  package/lean/luci-theme-argon
 
