@@ -14,11 +14,11 @@
 sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/files/bin/config_generate
 
 # 删除原来的adbyby
-rm -rf  package/lean/luci-app-adbyby-plus
+rm -rf  feeds/luci/applications/luci-app-adbyby-plus
 svn co https://github.com/NueXini/NueXini_Packages/trunk/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
 
 # 删除原来的argon
-rm -rf  package/lean/luci-theme-argon
+rm -rf  feeds/luci/themes/luci-theme-argon
 
 # 添加老竭力的argon主题
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon
