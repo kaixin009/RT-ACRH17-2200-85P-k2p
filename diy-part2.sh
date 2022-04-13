@@ -31,8 +31,8 @@ ZZZ="package/lean/default-settings/files/zzz-default-settings"
 
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ
 
-sed -i 's/set wireless.default_radio${devidx}.ssid=OpenWrt/set wireless.default_radio0.ssid=RT-AC2200_5G/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i 's/set wireless.default_radio${devidx}.ssid=OpenWrt/set wireless.default_radio0.ssid=RT-ACRH17_5G/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
-sed -i '/set wireless.default_radio0.ssid=RT-AC2200_5G/a\ set wireless.default_radio1.ssid=RT-AC2200' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed -i '/set wireless.default_radio0.ssid=RT-ACRH17_5G/a\ set wireless.default_radio1.ssid=RT-ACRH17' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 #git clone https://github.com/small-5/luci-app-adblock-plus.git package/lean/luci-app-adblock-plus
