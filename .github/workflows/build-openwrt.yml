@@ -84,7 +84,7 @@ jobs:
         
         git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
         git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-        git clone https://github.com/wiwizcom/WiFiPortal package/wifidog-wiwiz
+        #git clone https://github.com/wiwizcom/WiFiPortal package/wifidog-wiwiz
         
         
     - name: 安装源码插件源
