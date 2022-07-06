@@ -17,6 +17,9 @@ sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/files/bin/config_genera
 rm -rf  feeds/luci/applications/luci-app-adbyby-plus
 svn co https://github.com/NueXini/NueXini_Packages/trunk/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
 
+# 删除原来的luci-app-eqos
+rm -rf  feeds/luci/applications/luci-app-eqos
+
 # 删除原来的argon
 rm -rf  feeds/luci/themes/luci-theme-argon
 
@@ -36,3 +39,5 @@ sed -i 's/set wireless.default_radio${devidx}.ssid=OpenWrt/set wireless.default_
 sed -i '/set wireless.default_radio0.ssid=RT-AC2200_5G/a\ set wireless.default_radio1.ssid=RT-AC2200' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 #git clone https://github.com/small-5/luci-app-adblock-plus.git package/lean/luci-app-adblock-plus
+
+git clone https://github.com/wiwizcom/WiFiPortal.git package/wifidog-wiwiz
