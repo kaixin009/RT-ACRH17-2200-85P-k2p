@@ -14,7 +14,7 @@
 sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/files/bin/config_generate
 
 # Modify model
-sed -i 's/RT-ACRH17/RT-AC2200/g' target/linux/ipq40xx/files/arch/arm/boot/dts/qcom-ipq4019-rt-acrh17.dts
+sed -i 's/model = "ASUS RT-ACRH17"/model = "ASUS RT-AC2200"/g' target/linux/ipq40xx/files/arch/arm/boot/dts/qcom-ipq4019-rt-acrh17.dts
 
 # 删除原来的adbyby
 rm -rf  feeds/luci/applications/luci-app-adbyby-plus
