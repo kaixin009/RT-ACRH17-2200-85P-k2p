@@ -44,3 +44,5 @@ sed -i '/set wireless.default_radio0.ssid=RT-ACRH17_5G/a\ set wireless.default_r
 #git clone https://github.com/small-5/luci-app-adblock-plus.git package/lean/luci-app-adblock-plus
 
 git clone https://github.com/wiwizcom/WiFiPortal.git package/wifidog-wiwiz
+
+git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
