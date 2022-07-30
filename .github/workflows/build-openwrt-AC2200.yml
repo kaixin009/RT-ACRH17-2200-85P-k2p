@@ -12,17 +12,23 @@ name: Build RT-AC2200 OpenWrt
 
 on:
   repository_dispatch:
+ 
+ 
+  push:
+    branches:
+      - main
+    paths:
+     - 'config/ac2200.config'
+  
+  
+  
   workflow_dispatch:
     inputs:
       ssh:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-   push:
-    branches:
-      - main
-    paths:
-     - 'config/ac2200.config'
+
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
