@@ -14,15 +14,15 @@
 sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/files/bin/config_generate
 
 # Modify model
-sed -i 's/model = "ASUS RT-ACRH17"/model = "ASUS RT-AC2200"/g' target/linux/ipq40xx/files/arch/arm/boot/dts/qcom-ipq4019-rt-acrh17.dts
+# sed -i 's/model = "ASUS RT-ACRH17"/model = "ASUS RT-AC2200"/g' target/linux/ipq40xx/files/arch/arm/boot/dts/qcom-ipq4019-rt-acrh17.dts
 
 # 删除原来的adbyby
 rm -rf  feeds/luci/applications/luci-app-adbyby-plus
 svn co https://github.com/NueXini/NueXini_Packages/trunk/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
-svn co https://github.com/281677160/openwrt-package/trunk/luci-app-smartdns package/lean/luci-app-smartdns
+# svn co https://github.com/281677160/openwrt-package/trunk/luci-app-smartdns package/lean/luci-app-smartdns
 
 # 删除原来的luci-app-eqos
-rm -rf  feeds/luci/applications/luci-app-eqos
+# rm -rf  feeds/luci/applications/luci-app-eqos
 
 # 删除原来的argon
 rm -rf  feeds/luci/themes/luci-theme-argon
@@ -42,8 +42,8 @@ sed -i 's/set wireless.default_radio${devidx}.ssid=OpenWrt/set wireless.default_
 
 sed -i '/set wireless.default_radio0.ssid=RT-ACRH17_5G/a\ set wireless.default_radio1.ssid=RT-ACRH17' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
-#git clone https://github.com/small-5/luci-app-adblock-plus.git package/lean/luci-app-adblock-plus
+# git clone https://github.com/small-5/luci-app-adblock-plus.git package/lean/luci-app-adblock-plus
 
 git clone https://github.com/wiwizcom/WiFiPortal.git package/wifidog-wiwiz
 
-git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
+# git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
