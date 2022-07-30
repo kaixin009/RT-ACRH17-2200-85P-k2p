@@ -18,6 +18,9 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+        
+   paths:
+     - 'config/ac2200.config'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -93,7 +96,7 @@ jobs:
     - name: 读取自定义文件2
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/ac2200.config
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
