@@ -20,7 +20,7 @@ on:
         default: 'false'
    push:
     branches:
-      - master
+      - main
     paths:
      - 'config/ac2200.config'
 
