@@ -18,8 +18,10 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-        
-   paths:
+   push:
+    branches:
+      - master
+    paths:
      - 'config/ac2200.config'
 
 env:
